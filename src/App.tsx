@@ -96,6 +96,25 @@ const App: React.FC<{instanceId?: string; viewName?: string}> = (props) => {
     });
   };
 
+  /** 打开新的 RN 页面并等待返回数据 */
+  const openRNPageForResult = async () => {
+    try {
+      const result = await HybridBridge?.openRNPageForResult('SecondPage', {
+        title: '等待返回数据',
+        itemId: 'ITEM_003',
+      });
+      console.log('result =====>>>> ', result);
+      // 延迟弹窗，等待 Activity 完全恢复前台后再显示 Alert
+      setTimeout(() => {
+        Alert.alert('RN 页面返回结果', result || '(空)');
+      }, 300);
+    } catch (e: any) {
+      setTimeout(() => {
+        Alert.alert('取消', e.message || '页面取消');
+      }, 300);
+    }
+  };
+
   /** 获取设备信息 */
   const fetchDeviceInfo = async () => {
     try {
@@ -175,6 +194,11 @@ const App: React.FC<{instanceId?: string; viewName?: string}> = (props) => {
       <TouchableOpacity style={styles.button} onPress={openNewRNPage}>
         <Text style={styles.btnText}>RN → 新 RN 页面</Text>
         <Text style={styles.btnDesc}>原生新开 Activity 承载另一个 RN 组件</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={openRNPageForResult}>
+        <Text style={styles.btnText}>RN → 新 RN 页面（等待返回值）</Text>
+        <Text style={styles.btnDesc}>startActivityForResult + Promise，await 获取结果</Text>
       </TouchableOpacity>
 
       {/* 原生通信 */}

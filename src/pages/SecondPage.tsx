@@ -57,7 +57,7 @@ const SecondPage: React.FC<Props> = ({title, itemId, instanceId}) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>📄 独立 RN 页面</Text>
+      <Text style={styles.title}>📄 独立 RN 页面标题</Text>
 
       <View style={styles.infoBox}>
         <Text style={styles.infoLabel}>原生传入的参数（initialProperties）：</Text>
