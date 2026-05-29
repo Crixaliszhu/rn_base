@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "react-native start",
+    "start": "node scripts/start.js",
+    "metro": "react-native start",
     "bundle:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./output/index.android.bundle --assets-dest ./output/res",
     "bundle:android:dev": "react-native bundle --platform android --dev true --entry-file index.js --bundle-output ./output/index.android.bundle --assets-dest ./output/res"
   },
